@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: "mysql"
+  replicas: 2 
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mysql
+        image: elestio/mysql
+        env:
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: MYSQL_DATABASE
+          - name: PMA_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: PMA_HOST
+          - name: PMA_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: PMA_PORT
+          - name: PMA_USER
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: PMA_USER
+          - name: MYSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: MYSQL_USERNAME
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: MYSQL_ROOT_PASSWORD
+          - name: PMA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: PMA_PASSWORD
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-pv
+          mountPath: /usr/db/mysql
+      nodeSelector:
+        apptype: db
+      volumes:
+      - name: mysql-pv
+        persistentVolumeClaim:
+          claimName: mysql-pvc

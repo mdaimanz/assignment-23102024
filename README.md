@@ -10,10 +10,10 @@
 
 
 ## Create phpmyadmin svc
-![alt text](https://github.com/mdaimanz/assignment-23102024/blob/main/mysql/phpmyadmin-svc.png)
+![alt text](https://github.com/mdaimanz/assignment-23102024/blob/main/mysql/phpmyadmin-svc.png?raw=true)
 
 
 ## phpmyadmin home page running on http://127.0.0.1:39165
-![alt text](https://github.com/mdaimanz/assignment-23102024/blob/main/mysql/phpmyadmin-page.png)
+![alt text](https://github.com/mdaimanz/assignment-23102024/blob/main/mysql/phpmyadmin-page.png?raw=true)
 
 

@@ -3,13 +3,13 @@ kind: ClusterRole
 metadata:
   name: user-main
 rules:
-- apiGroups: ["apps"]
+- apiGroups: ["*"]
   resources: ["deployments", "statefulsets"]
   verbs: ["create", "get", "list", "watch", "update", "delete"]
 - apiGroups: [""]
   resources: ["persistentvolumes", "secrets", "configmaps"]
   verbs: ["create", "get", "list", "watch", "update", "delete"]
-- apiGroups: ["storage.k8s.io"]
+- apiGroups: ["*"]
   resources: ["storageclasses"]
   verbs: ["create", "get", "list", "watch", "update", "delete"]
 - apiGroups: [""]

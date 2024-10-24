@@ -4,7 +4,7 @@ metadata:
   name: mysql-sc
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
-provisioner: rancher.io/local-path
+provisioner: kubernetes.io/no-provisioner # use this instead of minikube provisioner as it not able to dynamic provisioning between nodes
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 volumeBindingMode: WaitForFirstConsumer

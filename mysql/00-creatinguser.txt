@@ -1,0 +1,10 @@
+openssl genrsa -out aiman.key 2048
+
+openssl req -new -key aiman.key -out aiman.csr -subj "/CN=aiman/O=dev/O=example.org"
+
+openssl x509 -req -in aiman.csr -CA /home/mdaimanz/.minikube/ca.crt -CAkey /home/mdaimanz/.minikube/ca.key -CAcreateserial -out aiman.crt
+
+kubectl config set-credentials aiman --client-certificate=aiman.crt --client-key=aiman.key
+kubectl config set-context aiman-kubernetes --cluster=minikube --user=aiman --namespace=default
+
+##NOTE: this is only applicable for minikube only.

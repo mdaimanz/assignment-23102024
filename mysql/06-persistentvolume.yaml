@@ -4,11 +4,11 @@ metadata:
   name: mysql-pv
 spec:
   capacity:
-    storage: 2Gi
+    storage: 10Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: mysql-sc
   hostPath:
-    path: /usr/db/mysql
+    path: /home/mdaimanz/db #change based on your local directory (ensure it is available in your directory)
